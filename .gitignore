@@ -2,4 +2,4 @@ music
 db.sqlite3
 myenv
 .settings
-.__pycache__
+/.__pycache__
