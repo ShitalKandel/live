@@ -1,30 +1,30 @@
-from django.shortcuts import render
-from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated,UserPermission
+from rest_framework.viewsets import ModelViewSet
+from ecommerce.serializers import ProductCategorySerializer,ProductSerializer,CategorySerializer,UserSerializer
 from ecommerce.models import Product,Category,ProductCategory
-from ecommerce.serializers import ProductSerializer,CategorySerializer,ProductCategorySerializer
+from user.models import User
+
+class ProductListView(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+class CategoryListView(ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+class ProductCategoryView(ModelViewSet):
+    queryset = ProductCategory.objects.all()
+    serializer_class = ProductCategorySerializer
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
-
-class ProductListView(ListCreateAPIView):
-    qs = Product.objects.all()
-    sc = ProductSerializer(qs)
-
-class ProductDetailView(RetrieveUpdateDestroyAPIView):
-    qs = Product.objects.all()
-    sc = ProductSerializer(qs)
-
-class CategoryListView(ListCreateAPIView):
-    qs = Category.objects.all()
-    sc = CategorySerializer(qs)
-
-class CategoryDetailView(RetrieveUpdateDestroyAPIView):
-    qs = Category.objects.all()
-    sc = CategorySerializer(qs)
-
-class ProductCategoryList(ListCreateAPIView):
-    qs = ProductCategory.objects.all()
-    sc = ProductCategorySerializer(qs)
-
-class ProductCategoryDetail(RetrieveUpdateDestroyAPIView):
-    qs = ProductCategory.objects.all()
-    sc = ProductCategorySerializer(qs)
+class UserView(ModelViewSet):
+    queryset = User.objects.all().order_by("-date_joined")
+    serializer_class = UserSerializer
+    permission_classes = [UserPermission]

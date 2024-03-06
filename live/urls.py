@@ -16,11 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from rest_framework.routers import SimpleRouter
 
-router = SimpleRouter()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('liveStream.urls')),
+    path('',include('ecommerce.routers')),
 ]
