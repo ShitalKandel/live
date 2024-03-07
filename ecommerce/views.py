@@ -1,9 +1,11 @@
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated,UserPermission
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from ecommerce.serializers import ProductCategorySerializer,ProductSerializer,CategorySerializer,UserSerializer
 from ecommerce.models import Product,Category,ProductCategory
 from user.models import User
+from ecommerce.permissions import UserPermission
+
 
 class ProductListView(ModelViewSet):
     queryset = Product.objects.all()
@@ -25,6 +27,7 @@ class ProductCategoryView(ModelViewSet):
 
 
 class UserView(ModelViewSet):
-    queryset = User.objects.all().order_by("-date_joined")
+    queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
-    permission_classes = [UserPermission]
+    permission_classes = [UserPermission,]
+

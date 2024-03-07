@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'channels',
     'liveStream',
     'ecommerce',
+    'user',
+    'account',
+    'base',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +141,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication'
     }
 }
+
+
+
+# AUTH_USER_MODEL = "users.User"

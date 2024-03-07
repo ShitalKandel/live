@@ -21,5 +21,7 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('liveStream.urls')),
-    path('',include('ecommerce.routers')),
+    path('ecommerce/',include('ecommerce.routers')),
+    path('api-auth/',include('rest_framework.urls'),name='rest_framework'),
+    path('accoutn/',include('account.urls')),
 ]

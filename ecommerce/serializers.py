@@ -20,8 +20,8 @@ class ProductCategorySerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username','password','password2']
-        extra_kwargs = {"password":{"write_only":True}}
+        fields = ['username','password','password2','email','phone_number','address']
+        extra_kwargs = {"password"}
 
     def create(self,validated_data):
         user = User(username=validated_data["username"])
