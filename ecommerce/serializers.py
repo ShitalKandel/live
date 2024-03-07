@@ -1,31 +1,27 @@
 from rest_framework import serializers
-from ecommerce.models import Product,Category,ProductCategory
-from account.models import User
-
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ['name','price','description','image','discount']
+from .models import Category, Product, ProductColor, ProductSize, ProductImage
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['name']
+        fields = '__all__'
 
-class ProductCategorySerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ProductCategory
-        fields = ['product','category']
+        model = Product
+        fields = '__all__'
 
-class UserSerializer(serializers.ModelSerializer):
+class ProductColorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['username','password','password2','email','phone_number','address']
-        extra_kwargs = {"password"}
+        model = ProductColor
+        fields = '__all__'
 
-    def create(self,validated_data):
-        user = User(username=validated_data["username"])
-        user.set_password(validated_data["password"])
-        user.save()
-        return user
-    
+class ProductSizeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductSize
+        fields = '__all__'
+
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = '__all__'

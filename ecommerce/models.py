@@ -7,9 +7,9 @@ from django.utils.text import slugify
 
 
 class Category(BaseModel):
-    category_name = models.CharField(max_length=200)
+    category_name = models.CharField(max_length=200,null=True)
     slug = models.SlugField(unique=True,null=True,blank=True)
-    category_image = models.ImageField(upload_to='categories')
+    category_image = models.ImageField(upload_to='categories',null=True)
 
     def save(self,*args,**kwargs):
         self.slug = slugify(self.category_name)
@@ -20,9 +20,9 @@ class Category(BaseModel):
     
 
 class Product(models.Model):
-    product_name = models.CharField(max_length=200)
+    product_name = models.CharField(max_length=200,null=True)
     slug = models.SlugField(unique=True,null=True,blank=True)
-    category = models.ForeignKey(Category,null=True,on_delete=models.CASCADE,related_name="products")
+    category = models.ForeignKey(Category,null=True,on_delete=models.CASCADE,related_name="products",default=True)
     price = models.DecimalField(max_digits=10,decimal_places=2)
     description = models.TextField()
     image = models.ImageField(upload_to='image/')

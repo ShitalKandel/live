@@ -27,7 +27,6 @@ urlpatterns = [
     path('',include('liveStream.urls')),
     path('ecommerce/',include('ecommerce.routers')),
     path('api-auth/',include('rest_framework.urls'),name='rest_framework'),
-    path('accoutn/',include('account.urls')),
 ]
 
 

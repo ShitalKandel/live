@@ -1,26 +1,23 @@
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import ModelViewSet
-from ecommerce.serializers import ProductCategorySerializer,ProductSerializer,CategorySerializer
-from ecommerce.models import Product,Category,ProductCategory
-from ecommerce.permissions import UserPermission
+from rest_framework import viewsets
+from ecommerce.models import Category, Product, ProductColor, ProductSize, ProductImage
+from ecommerce.serializers import CategorySerializer, ProductSerializer, ProductColorSerializer, ProductSizeSerializer, ProductImageSerializer
 
-
-class ProductListView(ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-
-class CategoryListView(ModelViewSet):
+class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
 
-class ProductCategoryView(ModelViewSet):
-    queryset = ProductCategory.objects.all()
-    serializer_class = ProductCategorySerializer
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
+class ProductColorViewSet(viewsets.ModelViewSet):
+    queryset = ProductColor.objects.all()
+    serializer_class = ProductColorSerializer
+
+class ProductSizeViewSet(viewsets.ModelViewSet):
+    queryset = ProductSize.objects.all()
+    serializer_class = ProductSizeSerializer
+
+class ProductImageViewSet(viewsets.ModelViewSet):
+    queryset = ProductImage.objects.all()
+    serializer_class = ProductImageSerializer

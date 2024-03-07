@@ -36,7 +36,7 @@ class UserViewSet(viewsets.ViewSet):
         except Profile.DoesNotExist:
             return Response({"error": "Invalid Email token"}, status=status.HTTP_400_BAD_REQUEST)
 
-@login.requred
+
 class ProfileViewSet(viewsets.ViewSet):
     
     queryset = Profile.objects.all()

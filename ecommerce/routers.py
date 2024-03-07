@@ -1,15 +1,14 @@
-from django.urls import path,include
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from ecommerce.views import ProductListView,CategoryListView,ProductCategoryView,UserView
-from account.views import UserViewSet
+from ecommerce import views
 
 router = DefaultRouter()
-router.register('products',ProductListView,basename='product')
-router.register('category',CategoryListView,basename='category')
-router.register('productcategory',ProductCategoryView,basename='productcategory')
-router.register('users',UserViewSet,basename='users')
-
+router.register(r'categories', views.CategoryViewSet)
+router.register(r'products', views.ProductViewSet)
+router.register(r'product-colors', views.ProductColorViewSet)
+router.register(r'product-sizes', views.ProductSizeViewSet)
+router.register(r'product-images', views.ProductImageViewSet)
 
 urlpatterns = [
-    path('',include(router.urls)),
-    ]
+    path('', include(router.urls)),
+]

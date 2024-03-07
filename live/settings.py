@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'channels',
     'liveStream',
     'ecommerce',
-    'user',
     'account',
     'base',
 ]
