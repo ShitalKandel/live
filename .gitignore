@@ -1,5 +1,7 @@
 music
 db.sqlite3
 myenv
-.settings
-/.__pycache__
+/settings/
+/__pycache__/
+liveStream
+

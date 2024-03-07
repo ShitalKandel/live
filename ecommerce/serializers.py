@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from ecommerce.models import Product,Category,ProductCategory
-from user.models import User
+from account.models import User
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
