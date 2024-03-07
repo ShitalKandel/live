@@ -2,6 +2,7 @@ from django.db import models
 # from django.contrib.auth.models import AbstractUser
 from base.models import BaseModel
 from django.utils.text import slugify
+from django.utils import timezone
 
 
 
@@ -29,7 +30,10 @@ class Product(models.Model):
     discount = models.FloatField(blank=True,null=True)
     
     def save(self,*args,**kwargs):
-        self.slug = slugify(self.product_name)
+        if self.product_name:
+            self.slug = slugify(self.product_name)
+        else:
+            self.slug = None
         super(Product,self).self(*args,**kwargs)
 
 
